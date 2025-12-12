@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pelestarian Budaya Indonesia</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <meta name="description" content="Website resmi pelestarian budaya Indonesia: tarian, musik, warisan lokal, artikel budaya, dan program pelestarian.">
+</head>
+
+<body>
+
+  <!-- DARK MODE TOGGLE -->
+  <button id="dark-mode-toggle" class="dark-toggle">🌙</button>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo">Pelestarian Budaya <span>Indonesia</span></h1>
+      <nav class="nav">
+        <button id="btn-all" class="nav-btn active">Semua</button>
+        <button class="nav-btn" data-region="Sumatra">Sumatra</button>
+        <button class="nav-btn" data-region="Jawa">Jawa</button>
+        <button class="nav-btn" data-region="Kalimantan">Kalimantan</button>
+        <button class="nav-btn" data-region="Sulawesi">Sulawesi</button>
+        <button class="nav-btn" data-region="Bali & Nusa Tenggara">Bali & NT</button>
+        <button class="nav-btn" data-region="Papua">Papua</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero full-hero aos">
+    <video autoplay muted loop playsinline class="hero-video" style="background: #000;">
+      <source src="video-background.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    <div class="hero-content container">
+      <h2>Melestarikan Budaya Indonesia</h2>
+      <p>Indonesia memiliki lebih dari 1.340 suku dan ribuan budaya. Kenali, jaga, dan wariskan untuk generasi mendatang.</p>
+      <a href="#gallery" class="cta-btn">Jelajahi Budaya</a>
+    </div>
+  </section>
+
+  <main class="container">
+
+    <!-- SEARCH + SORT -->
+    <section class="controls-section aos">
+      <div class="controls">
+        <input id="search" type="search" placeholder="Cari budaya (Tari, Musik, Batik)..." />
+        <select id="sort">
+          <option value="popular">Urutkan: Populer</option>
+          <option value="name-asc">Nama (A–Z)</option>
+          <option value="name-desc">Nama (Z–A)</option>
+        </select>
+      </div>
+    </section>
+
+    <h2 class="section-title aos">Galeri Budaya Indonesia</h2>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="gallery aos"></section>
+
+    <!-- RANDOM CULTURE -->
+    <section class="random-culture aos">
+      <h2>Budaya Random Hari Ini</h2>
+      <div id="random-box" class="random-box"></div>
+    </section>
+
+    <!-- HIGHLIGHT SECTION -->
+    <section class="highlight-section aos">
+      <h2>Budaya Unggulan Minggu Ini</h2>
+      <div class="highlight-grid">
+        <div class="highlight-card">
+          <img src="img.jpg.jpg" alt="Wayang Kulit" />
+          <div class="text">
+            <h3>Wayang Kulit – Jawa</h3>
+            <p>Kesenian tradisional yang diakui UNESCO sebagai warisan budaya dunia.</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <img src="imagee.jpg.jpg" alt="Rumah Adat Tongkonan" />
+          <div class="text">
+            <h3>Tongkonan – Toraja</h3>
+            <p>Rumah adat dengan arsitektur unik yang sarat nilai spiritual dan sosial.</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <img src="image.jpg.jpg" alt="Tari Piring" />
+          <div class="text">
+            <h3>Tari Piring – Sumatra Barat</h3>
+            <p>Tarian akrobatik yang menggunakan piring sebagai simbol rasa syukur.</p>
+          </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- TESTIMONIAL SLIDER -->
+    <section class="testimonial aos">
+      <h2>Kata Mereka Tentang Budaya</h2>
+      <div class="testimonial-slider">
+        <div class="slide">"Budaya adalah identitas bangsa yang tidak boleh pudar." – Ki Joko</div>
+        <div class="slide">"Digitalisasi membuat budaya lebih mudah dikenal dunia." – Dewi Lestari</div>
+        <div class="slide">"Pelestarian adalah tanggung jawab kita bersama." – Sapardi</div>
+      </div>
+    </section>
+
+    <!-- INDONESIA MAP -->
+    <section class="map-section aos">
+      <h2>Peta Interaktif Budaya</h2>
+      <img src="peta-indonesia.jpg" id="map" alt="Peta Indonesia">
+      <div id="map-info"></div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="quiz aos">
+      <h2>Kuis Budaya</h2>
+      <div class="quiz-container">
+        <div id="quiz-start" class="quiz-start-screen">
+          <div class="quiz-intro">
+            <div class="quiz-icon">🎭</div>
+            <h3>Uji Pengetahuanmu Tentang Budaya Indonesia</h3>
+            <p>Jawab 10 pertanyaan menarik tentang berbagai budaya dari seluruh nusantara dan lihat seberapa baik pengetahuanmu!</p>
+            <div class="quiz-info-grid">
+              <div class="info-item">
+                <span class="info-icon">❓</span>
+                <span class="info-text">10 Pertanyaan</span>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">⏱️</span>
+                <span class="info-text">5-10 Menit</span>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">🎯</span>
+                <span class="info-text">Dapatkan Skor</span>
+              </div>
+            </div>
+            <button id="start-quiz" class="quiz-start-btn">Mulai Kuis Sekarang</button>
+          </div>
+        </div>
+        <div id="quiz-box"></div>
+      </div>
+    </section>
+
+    <!-- ARTICLES -->
+    <section class="articles aos">
+      <h2>Artikel Pelestarian</h2>
+
+      <a href="cara-melestarikan.html" class="article-card">
+        <img src="tarian-moyang.jpg.jpg" />
+        <div>
+          <h3>3 Cara Mudah Melestarikan Budaya</h3>
+          <p>Mulai dari mengenalkan budaya ke generasi muda, mendokumentasikan, hingga mendukung seniman lokal.</p>
+        </div>
+      </a>
+
+      <a href="batik-penting.html" class="article-card">
+        <img src="pelestarianbatik.jpg.jpg" />
+        <div>
+          <h3>Mengapa Batik Begitu Penting?</h3>
+          <p>Batik adalah identitas bangsa dan telah mendunia sebagai warisan budaya takbenda UNESCO.</p>
+        </div>
+      </a>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about aos">
+      <h3>Tentang Website Ini</h3>
+      <p>
+        Website ini dibuat sebagai media edukasi, dokumentasi, dan pelestarian budaya Indonesia.
+        Dengan memanfaatkan teknologi digital, kita bisa menghadirkan budaya ke generasi muda secara lebih menarik,
+        sekaligus menjaga agar warisan leluhur tidak hilang ditelan zaman.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close">&times;</button>
+      <img id="modal-img" alt="" />
+      <h3 id="modal-title"></h3>
+      <p id="modal-desc"></p>
+      <div class="meta">
+        <strong>Wilayah:</strong> <span id="modal-region"></span><br>
+        <strong>Kategori:</strong> <span id="modal-category"></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

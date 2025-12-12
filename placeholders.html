@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Placeholder Gambar Budaya Indonesia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .placeholder-card {
+            background: var(--card, #ffffff);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transition: all 300ms ease;
+        }
+        
+        .placeholder-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+        }
+        
+        .placeholder-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+        
+        .placeholder-info {
+            padding: 16px;
+        }
+        
+        .placeholder-name {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        
+        .placeholder-meta {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .placeholder-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .download-btn {
+            background: linear-gradient(180deg, var(--accent), var(--accent-2));
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 12px;
+            width: 100%;
+            transition: all 200ms ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.3);
+        }
+        
+        .info-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 16px;
+            border-radius: 8px;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .info-box h3 {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📸 Generator Placeholder Gambar Budaya Indonesia</h1>
+        
+        <div class="info-box">
+            <h3>ℹ️ Informasi</h3>
+            <p>Halaman ini menampilkan placeholder untuk semua budaya yang belum memiliki gambar asli. Anda dapat:</p>
+            <ul style="margin-left: 20px; margin-top: 8px;">
+                <li><strong>Mengambil screenshot</strong> dari placeholder ini</li>
+                <li><strong>Menggunakan gambar dari internet</strong> (cari di Google Images, Unsplash, Pixabay)</li>
+                <li><strong>Mengunggah file gambar sendiri</strong> ke folder project dengan nama file sesuai yang ditunjukkan</li>
+            </ul>
+        </div>
+        
+        <div class="grid" id="placeholders"></div>
+    </div>
+
+    <script>
+        // Data budaya dari script.js
+        const budayaData = [
+            // SUMATRA
+            { name: "Tari Saman", region: "Sumatra", category: "Tarian", img: "saman2.jpg.jpg", emoji: "🎭" },
+            { name: "Tari Piring", region: "Sumatra", category: "Tarian", img: "tari-piring.jpg", emoji: "🎭" },
+            { name: "Tari Melayu Deli", region: "Sumatra", category: "Tarian", img: "melayu-deli.jpg", emoji: "🎭" },
+            { name: "Tari Gelang Alas", region: "Sumatra", category: "Tarian", img: "gelang-alas.jpg", emoji: "🎭" },
+            { name: "Tari Zapin", region: "Sumatra", category: "Tarian", img: "zapin.jpg", emoji: "🎭" },
+            { name: "Rumah Gadang", region: "Sumatra", category: "Arsitektur", img: "gadang.jpg.jpg", emoji: "🏠" },
+            { name: "Istana Maimun", region: "Sumatra", category: "Arsitektur", img: "istana-maimun.jpg", emoji: "🏰" },
+            { name: "Rumah Boang Aceh", region: "Sumatra", category: "Arsitektur", img: "boang.jpg", emoji: "🏠" },
+            { name: "Rendang", region: "Sumatra", category: "Kuliner", img: "rendang.jpg", emoji: "🍲" },
+            { name: "Gulai Tambusu", region: "Sumatra", category: "Kuliner", img: "gulai-tambusu.jpg", emoji: "🍲" },
+            { name: "Ulos Batak", region: "Sumatra", category: "Kain Tradisional", img: "ulos.jpg", emoji: "🧵" },
+            
+            // JAWA
+            { name: "Wayang Kulit", region: "Jawa", category: "Seni Pertunjukan", img: "wayang2.jpg.jpg", emoji: "🎭" },
+            { name: "Batik", region: "Jawa", category: "Kain Tradisional", img: "batik.jpg", emoji: "🎨" },
+            { name: "Reog Ponorogo", region: "Jawa", category: "Seni Pertunjukan", img: "reog.jpg", emoji: "🎭" },
+            { name: "Angklung", region: "Jawa", category: "Alat Musik", img: "angklung.jpg", emoji: "🎵" },
+            { name: "Keris", region: "Jawa", category: "Warisan Tradisional", img: "keris.jpg", emoji: "⚔️" },
+            { name: "Wayang Orang", region: "Jawa", category: "Seni Pertunjukan", img: "wayang-orang.jpg", emoji: "🎭" },
+            { name: "Gamelan Jawa", region: "Jawa", category: "Alat Musik", img: "gamelan-jawa.jpg", emoji: "🥁" },
+            { name: "Kain Lurik", region: "Jawa", category: "Kain Tradisional", img: "lurik.jpg", emoji: "🧵" },
+            { name: "Tari Serimpi", region: "Jawa", category: "Tarian", img: "serimpi.jpg", emoji: "🎭" },
+            { name: "Gunungan Wayang", region: "Jawa", category: "Seni Kerajinan", img: "gunungan.jpg", emoji: "🎨" },
+            
+            // KALIMANTAN
+            { name: "Rumah Betang", region: "Kalimantan", category: "Arsitektur", img: "betang.jpg", emoji: "🏠" },
+            { name: "Tari Gong", region: "Kalimantan", category: "Tarian", img: "tari-gong.jpg", emoji: "🎭" },
+            { name: "Mandau", region: "Kalimantan", category: "Warisan Tradisional", img: "mandau.jpg", emoji: "⚔️" },
+            { name: "Tenun Ikat Dayak", region: "Kalimantan", category: "Kain Tradisional", img: "ikat-dayak.jpg", emoji: "🧵" },
+            { name: "Upacara Tiwah", region: "Kalimantan", category: "Upacara Adat", img: "tiwah.jpg", emoji: "🎉" },
+            { name: "Tari Hudoq", region: "Kalimantan", category: "Tarian", img: "hudoq.jpg", emoji: "🎭" },
+            { name: "Seni Pahat Dayak", region: "Kalimantan", category: "Seni Kerajinan", img: "pahat-dayak.jpg", emoji: "🎨" },
+            { name: "Rumah Tambi Halu", region: "Kalimantan", category: "Arsitektur", img: "tambi-halu.jpg", emoji: "🏠" },
+            { name: "Sago Lempeng", region: "Kalimantan", category: "Kuliner", img: "sago-lempeng.jpg", emoji: "🍲" },
+            { name: "Anyaman Rotan Dayak", region: "Kalimantan", category: "Seni Kerajinan", img: "anyaman-rotan.jpg", emoji: "🧺" },
+            
+            // SULAWESI
+            { name: "Tongkonan", region: "Sulawesi", category: "Arsitektur", img: "tongkonan.jpg", emoji: "🏠" },
+            { name: "Tari Pakarena", region: "Sulawesi", category: "Tarian", img: "pakarena.jpg", emoji: "🎭" },
+            { name: "Rambu Solo", region: "Sulawesi", category: "Upacara Adat", img: "rambu-solo.jpg", emoji: "🎉" },
+            { name: "Tenun Toraja", region: "Sulawesi", category: "Kain Tradisional", img: "tenun-toraja.jpg", emoji: "🧵" },
+            { name: "Pakaian Adat Bugis", region: "Sulawesi", category: "Pakaian Tradisional", img: "bugis.jpg", emoji: "👔" },
+            { name: "Tari Cakalele", region: "Sulawesi", category: "Tarian", img: "cakalele.jpg", emoji: "🎭" },
+            { name: "Batik Makassar", region: "Sulawesi", category: "Kain Tradisional", img: "batik-makassar.jpg", emoji: "🎨" },
+            { name: "Gong Toraja", region: "Sulawesi", category: "Alat Musik", img: "gong-toraja.jpg", emoji: "🥁" },
+            { name: "Coto Makassar", region: "Sulawesi", category: "Kuliner", img: "coto-makassar.jpg", emoji: "🍲" },
+            { name: "Tari Poco-Poco", region: "Sulawesi", category: "Tarian", img: "poco-poco.jpg", emoji: "🎭" },
+            
+            // BALI & NUSA TENGGARA
+            { name: "Tari Kecak", region: "Bali & Nusa Tenggara", category: "Tarian", img: "kecak.jpg.jpg", emoji: "🎭" },
+            { name: "Tari Barong", region: "Bali & Nusa Tenggara", category: "Tarian", img: "barong.jpg", emoji: "🎭" },
+            { name: "Penglipuran", region: "Bali & Nusa Tenggara", category: "Destinasi Budaya", img: "penglipuran.jpg", emoji: "🏞️" },
+            { name: "Tenun Gringsing", region: "Bali & Nusa Tenggara", category: "Kain Tradisional", img: "gringsing.jpg", emoji: "🧵" },
+            { name: "Gamelan Bali", region: "Bali & Nusa Tenggara", category: "Alat Musik", img: "gamelan-bali.jpg", emoji: "🥁" },
+            { name: "Tari Legong", region: "Bali & Nusa Tenggara", category: "Tarian", img: "legong.jpg", emoji: "🎭" },
+            { name: "Pura Besakih", region: "Bali & Nusa Tenggara", category: "Arsitektur", img: "besakih.jpg", emoji: "🏰" },
+            { name: "Lontar Bali", region: "Bali & Nusa Tenggara", category: "Warisan Tradisional", img: "lontar.jpg", emoji: "📜" },
+            { name: "Babi Guling", region: "Bali & Nusa Tenggara", category: "Kuliner", img: "babi-guling.jpg", emoji: "🍖" },
+            { name: "Tari Pendet", region: "Bali & Nusa Tenggara", category: "Tarian", img: "pendet.jpg", emoji: "🎭" },
+            
+            // PAPUA
+            { name: "Rumah Honai", region: "Papua", category: "Arsitektur", img: "honai.jpg", emoji: "🏠" },
+            { name: "Tifa", region: "Papua", category: "Alat Musik", img: "tifa.jpg", emoji: "🥁" },
+            { name: "Tari Yospan", region: "Papua", category: "Tarian", img: "yospan.jpg", emoji: "🎭" },
+            { name: "Seni Ukir Asmat", region: "Papua", category: "Seni Patung", img: "asmat.jpg", emoji: "🎨" },
+            { name: "Koteka", region: "Papua", category: "Atribut Adat", img: "koteka.jpg", emoji: "👕" },
+            { name: "Tari Poco-Poco Papua", region: "Papua", category: "Tarian", img: "poco-poco-papua.jpg", emoji: "🎭" },
+            { name: "Noken Papua", region: "Papua", category: "Seni Kerajinan", img: "noken.jpg", emoji: "👜" },
+            { name: "Rumah Kariwari", region: "Papua", category: "Arsitektur", img: "kariwari.jpg", emoji: "🏠" },
+            { name: "Papeda", region: "Papua", category: "Kuliner", img: "papeda.jpg", emoji: "🍲" },
+            // Tari Tebus Sayap (Papua) dihapus dari daftar placeholder
+        ];
+
+        // Render placeholders
+        const container = document.getElementById('placeholders');
+        budayaData.forEach(budaya => {
+            const card = document.createElement('div');
+            card.className = 'placeholder-card';
+            
+            const colors = [
+                'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+                'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+            ];
+            
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            card.innerHTML = `
+                <div class="placeholder-image" style="background: ${randomColor}">
+                    ${budaya.emoji}
+                </div>
+                <div class="placeholder-info">
+                    <div class="placeholder-name">${budaya.name}</div>
+                    <div class="placeholder-meta">
+                        📍 ${budaya.region} • ${budaya.category}
+                    </div>
+                    <div class="placeholder-desc">
+                        Nama file: <strong>${budaya.img}</strong>
+                    </div>
+                    <button class="download-btn" onclick="copyToClipboard('${budaya.img}')">
+                        📋 Copy Nama File
+                    </button>
+                </div>
+            `;
+            
+            container.appendChild(card);
+        });
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert(`✅ Nama file disalin: ${text}`);
+            });
+        }
+    </script>
+</body>
+</html>

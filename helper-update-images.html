@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helper - Update Path Gambar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', monospace;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card, #ffffff);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .section {
+            margin-bottom: 24px;
+        }
+        
+        .section h2 {
+            font-size: 16px;
+            color: #667eea;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 8px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            resize: vertical;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 12px 0;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms ease;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(180deg, var(--accent, #0f766e), var(--accent-2, #0ea5a3));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .info-box {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        
+        .info-box code {
+            background: var(--card, #ffffff);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .output {
+            background: #f5f5f5;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 12px;
+            max-height: 300px;
+            overflow: auto;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            margin-top: 12px;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        
+        .error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        
+        .steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+        
+        .steps li {
+            counter-increment: step-counter;
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+            font-size: 13px;
+        }
+        
+        .steps li:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #667eea;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Helper - Update Path Gambar Otomatis</h1>
+        <p class="subtitle">Tool untuk memudahkan update path gambar dari root ke folder images/</p>
+
+        <div class="section">
+            <h2>📋 Opsi 1: Update Path Manual (Recommended)</h2>
+            <div class="info-box">
+                <strong>Langkah:</strong><br>
+                1. Buka file <code>script.js</code> di editor<br>
+                2. Gunakan Find & Replace (Ctrl+H)<br>
+                3. Find: <code>img: "</code><br>
+                4. Replace: <code>img: "images/</code><br>
+                5. Klik "Replace All"
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🤖 Opsi 2: Batch Update Otomatis</h2>
+            <div class="info-box">
+                <strong>Instruksi:</strong> Buka DevTools di browser (F12), buka Console, dan paste code di bawah.
+            </div>
+            
+            <textarea id="batchCode" readonly>// Jalankan di Console (F12)
+// Ini akan add "images/" ke semua path gambar
+
+const imagePath = 'images/';
+
+// Baca data dari dataBudaya
+const updated = dataBudaya.map(item => ({
+  ...item,
+  img: item.img.startsWith(imagePath) ? item.img : imagePath + item.img
+}));
+
+// Copy code dibawah untuk replace di script.js:
+console.log('COPY CODE DIBAWAH INI KE script.js');
+console.log('');
+console.log('const dataBudaya = ' + JSON.stringify(updated, null, 2) + ';');
+</textarea>
+            <button class="btn-secondary" onclick="copyToClipboard('batchCode')">📋 Copy Code</button>
+        </div>
+
+        <div class="section">
+            <h2>🔍 Opsi 3: Verifikasi File Gambar</h2>
+            <div class="info-box">
+                Jalankan code ini di Console untuk check gambar mana yang missing:
+            </div>
+            
+            <textarea id="verifyCode" readonly>// Jalankan di Console (F12)
+console.log('🔍 Checking image files...\n');
+
+const missing = [];
+const found = [];
+
+dataBudaya.forEach(budaya => {
+  const img = new Image();
+  img.onload = () => {
+    console.log(`✅ ${budaya.name} - ${budaya.img}`);
+    found.push(budaya.img);
+  };
+  img.onerror = () => {
+    console.error(`❌ MISSING - ${budaya.name} - ${budaya.img}`);
+    missing.push({ name: budaya.name, img: budaya.img });
+  };
+  img.src = budaya.img;
+});
+
+setTimeout(() => {
+  console.log(`\n📊 SUMMARY:`);
+  console.log(`✅ Found: ${found.length}`);
+  console.log(`❌ Missing: ${missing.length}`);
+  if (missing.length > 0) {
+    console.log('\n❌ MISSING FILES:');
+    console.table(missing);
+  }
+}, 2000);
+</textarea>
+            <button class="btn-secondary" onclick="copyToClipboard('verifyCode')">📋 Copy Code</button>
+        </div>
+
+        <div class="section">
+            <h2>📝 Langkah-Langkah Lengkap</h2>
+            <ol class="steps">
+                <li><strong>Buat folder images:</strong> 
+                    Di `c:\Users\Dian Novitaria\OneDrive\Documents\kokulikuler.web\`, buat folder baru bernama `images`
+                </li>
+                <li><strong>Download semua gambar:</strong> 
+                    Lihat `PANDUAN_GAMBAR.md` untuk daftar lengkap sumber dan nama file
+                </li>
+                <li><strong>Simpan gambar:</strong> 
+                    Letakkan semua gambar di folder `images/` dengan nama file yang tepat
+                </li>
+                <li><strong>Update path di script.js:</strong> 
+                    Gunakan Find & Replace atau batch update otomatis (lihat opsi 1 atau 2)
+                </li>
+                <li><strong>Verifikasi:</strong> 
+                    Buka index.html di browser, buka DevTools (F12), console, dan jalankan code di Opsi 3
+                </li>
+                <li><strong>Test di browser:</strong> 
+                    Pastikan semua gambar muncul di gallery dan modal
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>✅ Checklist</h2>
+            <div style="background: #f8f9ff; padding: 16px; border-radius: 8px; font-size: 13px;">
+                <label style="display: block; margin-bottom: 10px;">
+                    <input type="checkbox"> Folder <code>images/</code> sudah dibuat
+                </label>
+                <label style="display: block; margin-bottom: 10px;">
+                    <input type="checkbox"> Semua 60 gambar sudah didownload
+                </label>
+                <label style="display: block; margin-bottom: 10px;">
+                    <input type="checkbox"> Nama file sesuai (perhatian: case-sensitive!)
+                </label>
+                <label style="display: block; margin-bottom: 10px;">
+                    <input type="checkbox"> Path di <code>script.js</code> sudah diupdate
+                </label>
+                <label style="display: block; margin-bottom: 10px;">
+                    <input type="checkbox"> Test gambar di browser (lihat console untuk missing files)
+                </label>
+                <label style="display: block; margin-bottom: 10px;">
+                    <input type="checkbox"> Semua gambar muncul di gallery
+                </label>
+                <label style="display: block;">
+                    <input type="checkbox"> Klik card → modal terbuka dengan gambar yang tepat
+                </label>
+            </div>
+        </div>
+
+        <div class="section" style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; border-radius: 8px;">
+            <strong>⚠️ Penting:</strong> Nama file harus PERSIS SAMA dengan yang di script.js, termasuk huruf besar/kecil (case-sensitive) pada sistem Linux/Mac. Windows agak lebih lenient, tapi tetap hati-hati.
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(elementId) {
+            const textarea = document.getElementById(elementId);
+            textarea.select();
+            document.execCommand('copy');
+            alert('✅ Code sudah disalin ke clipboard!');
+        }
+    </script>
+</body>
+</html>
